@@ -1,0 +1,55 @@
+#include<iostream>
+using namespace std;
+int main() {
+    int n,m;
+    cin>>m>>n;
+    int a[1000][1000];
+    int h1=1;
+    int h2=m;
+    int c1=1;
+    int c2=n;
+    int cnt=1;
+    for(int i=1;i<=m;i++) {
+        for(int j=1;j<=n;j++) {
+            a[i][j]=0;
+        }
+    }
+    while(h1<=h2&&c1<=c2) {
+        
+        for(int i=c1;i<=c2;i++) {
+            if(a[h1][i]==0){
+            a[h1][i]=cnt;
+            cnt++;
+            }
+        }
+        h1++;
+        for(int i=h1;i<=h2;i++) {
+            if(a[i][c2]==0)
+            {
+            a[i][c2]=cnt;
+            cnt++;
+            }
+        }
+        c2--;
+        for(int i=c2;i>=c1;i--) {
+            if(a[h2][i]==0) {
+            a[h2][i]=cnt;
+            cnt++;
+            }
+        }
+        h2--;
+        for(int i=h2;i>=h1;i--) {
+            if(a[i][c1]==0) {
+            a[i][c1]=cnt;
+            cnt++;
+            }
+        }
+        c1++;
+    }
+    for(int i=1;i<=m;i++) {
+        for(int j=1;j<=n;j++) {
+            cout<<a[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+}
